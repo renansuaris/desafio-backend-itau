@@ -33,6 +33,10 @@ public class TransactionServiceImpl implements TransactionService {
                 .mapToDouble(Transaction::getValor)
                 .summaryStatistics();
 
+        if(stats.getCount() == 0)
+            return new StatisticsResponseDto(0, 0, 0, 0, 0);
+
+
         return StatisticsResponseDto.from(stats);
     }
 
